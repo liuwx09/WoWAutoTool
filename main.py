@@ -30,7 +30,7 @@ from utils.config import Config
 from utils.logger import Logger
 
 try:
-    from PyQt5.QtWidgets import (
+    from PyQt5.QtWidgets import QApplication, (
         QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
         QPushButton, QLabel, QTextEdit, QGroupBox,
         QSpinBox, QCheckBox, QTabWidget, QStatusBar,
