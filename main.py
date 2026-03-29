@@ -275,7 +275,7 @@ class MainWindow(QMainWindow):
         self.preview_label.setMinimumSize(640, 400)
         self.preview_label.setStyleSheet("background-color: #1a1a1a; border: 1px solid #444;")
         self.preview_label.setAlignment(Qt.AlignCenter)
-        self.preview_label.setText("点击"开始"后显示画面预览")
+        self.preview_label.setText("点击'开始'后显示画面预览")
         
         layout.addWidget(self.preview_label)
         
@@ -698,7 +698,7 @@ class MainWindow(QMainWindow):
     
     def show_settings(self):
         """Show settings dialog."""
-        QMessageBox.information(self, "设置", "请在主界面调整设置，然后点击"应用设置"")
+        QMessageBox.information(self, "设置", "请在主界面调整设置，然后点击'应用设置'")
     
     def show_about(self):
         """Show about dialog."""
