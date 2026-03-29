@@ -1,0 +1,53 @@
+name: Build Windows Executable
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+        pip install pyinstaller
+    
+    - name: Build executable
+      run: |
+        pyinstaller WoWAutoTool.spec --clean --noconfirm
+    
+    - name: Create distribution folder
+      run: |
+        # Copy additional files to dist folder
+        New-Item -ItemType Directory -Path "publish" -Force
+        Copy-Item "dist/WoWAutoTool/*" "publish/" -Recurse -Force
+        Copy-Item "wow_addon" "publish/" -Recurse -Force
+        Copy-Item "images" "publish/" -Recurse -Force
+        Copy-Item "scripts" "publish/" -Recurse -Force
+        Copy-Item "README.md" "publish/"
+    
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: WoWAutoTool-Windows
+        path: publish
+        retention-days: 7
+    
+    - name: Download artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: WoWAutoTool-Windows
+        path: publish
+    
+    - name: Show files
+      run: |
+        Get-ChildItem -Path "publish" -Recurse | Select-Object FullName, Length

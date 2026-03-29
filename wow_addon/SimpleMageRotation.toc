@@ -1,0 +1,7 @@
+## SimpleMageRotation.toc
+## Simple Mage Rotation Addon - Compliant with ToS
+## Version: 1.0
+## Description: Basic skill rotation for leveling mages
+
+SimpleMageRotation.lua
+SimpleMageRotation.xml
